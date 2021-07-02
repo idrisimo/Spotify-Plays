@@ -51,6 +51,7 @@ If there are any bugs you find. please submit an issue ticket via [Github](https
 ## Roadmap
 - Sort out environmental variables so that the tempmail api is not hard coded 
 - Add a button to the spreadsheet for account creation.
+- Add proper logging.
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
