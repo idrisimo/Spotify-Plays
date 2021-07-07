@@ -1,32 +1,25 @@
-from openpyxl import Workbook, load_workbook
 import re
 import sys
 import os
+import pandas as pd
 
 class WorkbookController:
 
     def initialise(self):
-        self.workbook = load_workbook(filename=os.path.join(sys.path[0], 'spotify-plays.xlsx.xlsm'))
-        self.sheet = self.workbook.active
-        artist_link = []
-        for row in range(2, self.sheet.max_row):
-            if self.sheet.cell(row=row, column=1).value is None:
-                break
-            else:
-                artist_link.append(self.sheet.cell(row=row, column=1).value)
-
-        return artist_link
-
-    def get_song_id(self, link):
-        song_id = re.search("track/(.*?)\?si=", link).group(1)
-        return song_id
+        artist_links = pd.read_excel(os.path.join(sys.path[0], 'spotify-data-spreadsheet.xlsm'))
+        artist_links.dropna(subset=['Artist Link'], inplace=True)
+        if artist_links.empty:
+            print('No links in spreadsheet')
+            input('Press ANY key to quit...')
+            exit()
+        return artist_links
 
     def get_artist_id(self, link):
-        artist_id = re.search("artist/(.*?)\?si=", link).group(1)
+        try:
+            artist_id = re.search("artist/(.*?)\?si=", str(link)).group(1)
+        except:
+            artist_id = re.search("artist/(\w+)", str(link)).group(1)
         return artist_id
 
-
-    def save_workbook(self):
-        self.workbook.save(filename=os.path.join(sys.path[0], 'spotify-plays.xlsx.xlsm'))
 
 
