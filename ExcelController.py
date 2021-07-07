@@ -9,7 +9,7 @@ class WorkbookController:
         artist_links = pd.read_excel(os.path.join(sys.path[0], 'spotify-data-spreadsheet.xlsm'))
         artist_links.dropna(subset=['Artist Link'], inplace=True)
         if artist_links.empty:
-            print('No links in spreadsheet')
+            print('No links in spreadsheet. Did you save before running script?')
             input('Press ANY key to quit...')
             exit()
         return artist_links
