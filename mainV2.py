@@ -1,10 +1,9 @@
 import pandas as pd
 import numpy as np
 import time
+import concurrent.futures
 import sys
 import os
-import concurrent.futures
-import logging
 
 from ExcelController import WorkbookController
 from SpotifyScraperV2 import ScraperController
@@ -34,7 +33,7 @@ def scrape_instance(excel_df_data):
     excel_df_row = excel_df_data[1]
     artist_id = excel_df_row['Artist Link']
     scraper_instance.create_session()
-    scraper_instance.get_discography(artist_id=artist_id)
+    scraper_instance.get_discography(artist_id=artist_id)  #
     album_name_df_list = []
     first_run = True
     for num in range(scraper_instance.get_num_discography_types()):
@@ -62,7 +61,6 @@ def scrape_instance(excel_df_data):
 if __name__ == '__main__':
     start_time = time.perf_counter()
     print('Starting script...')
-
     dataframe_list = []
     excel_data = excel_initialiser().iterrows()
     with concurrent.futures.ThreadPoolExecutor(max_workers=4) as executor:

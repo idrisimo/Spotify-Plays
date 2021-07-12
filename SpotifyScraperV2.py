@@ -7,11 +7,11 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 import json
 import re
-import sys
-import os
+
 from urllib.parse import unquote
 import pandas as pd
-
+import sys
+import os
 
 class ScraperController:
 
@@ -21,7 +21,7 @@ class ScraperController:
         capabilities['goog:loggingPrefs'] = {'performance': 'ALL'}
         chrome_options = Options()
         chrome_options.add_argument('--headless')
-        chrome_options.add_experimental_option('excludeSwitches', ['enable-logging'])
+        chrome_options.add_experimental_option('excludeSwitches', ['enable-logging'])  # suppresses errors that spawn when running code from excel sheet
         self.browser = webdriver.Chrome(executable_path=os.path.join(sys.path[0], 'chromedriver.exe'),
                                    options=chrome_options,
                                    desired_capabilities=capabilities)
@@ -29,15 +29,18 @@ class ScraperController:
     def get_discography(self, artist_id):
         print("Loading Artist's Page...")
         self.browser.get(f'https://open.spotify.com/artist/{artist_id}')
+        # Handle Cookie popup
         WebDriverWait(self.browser, 20).until(EC.element_to_be_clickable((By.ID, 'onetrust-accept-btn-handler')))
         print('Accepting cookies...')
         self.browser.find_element_by_id('onetrust-accept-btn-handler').click()
         time.sleep(0.5)
+        # Open Discography page
         see_discography = self.browser.find_element_by_xpath('//span[contains(text(), "See discography")]')
         print('Opening discography...')
         see_discography.click()
         WebDriverWait(self.browser, 20).until(EC.element_to_be_clickable(
             (By.XPATH, '//*[@id="main"]/div/div[2]/div[3]/main/div[2]/div[2]/div/div/div[2]/section/div[1]/button[2]')))
+        time.sleep(5)
         self.browser.find_element_by_xpath(
             '//*[@id="main"]/div/div[2]/div[3]/main/div[2]/div[2]/div/div/div[2]/section/div[1]/button[2]').click()
 
@@ -71,13 +74,13 @@ class ScraperController:
         print(f'Clicking button for: {discography_button.text}...')
         discography_button.click()
 
-    def get_num_discography_types(self):
+    def get_num_discography_types(self):  # This is used to grab the number of discography types so that the dropdown can be iterated through.
         self.open_discography_type()
         discography_count = self.browser.find_elements_by_xpath('//*[@id="context-menu"]/ul/li')
         self.open_discography_type()
         return len(discography_count)
 
-    def har_file_data_collection(self):
+    def har_file_data_collection(self):  # Grabs data from chrome devtools network tab.
         # extract requests from logs
         print('Gettings Chrome har files')
         logs_raw = self.browser.get_log("performance")
