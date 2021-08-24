@@ -33,7 +33,7 @@ def scrape_instance(excel_df_data):
     excel_df_row = excel_df_data[1]
     artist_id = excel_df_row['Artist Link']
     scraper_instance.create_session()
-    scraper_instance.get_discography(artist_id=artist_id)  #
+    scraper_instance.get_discography(artist_id=artist_id)
     album_name_df_list = []
     first_run = True
     for num in range(scraper_instance.get_num_discography_types()):

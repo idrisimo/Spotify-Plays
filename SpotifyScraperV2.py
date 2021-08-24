@@ -39,10 +39,10 @@ class ScraperController:
         print('Opening discography...')
         see_discography.click()
         WebDriverWait(self.browser, 20).until(EC.element_to_be_clickable(
-            (By.XPATH, '//*[@id="main"]/div/div[2]/div[3]/main/div[2]/div[2]/div/div/div[2]/section/div[1]/button[2]')))
+            (By.XPATH, '//*[@id="main"]/div/div[2]/div[3]/main/div[2]/div[2]/div/div/div[2]/section/div/div[1]/button[2]')))
         time.sleep(5)
         self.browser.find_element_by_xpath(
-            '//*[@id="main"]/div/div[2]/div[3]/main/div[2]/div[2]/div/div/div[2]/section/div[1]/button[2]').click()
+            '//*[@id="main"]/div/div[2]/div[3]/main/div[2]/div[2]/div/div/div[2]/section/div/div[1]/button[2]').click()
 
     def get_album_names(self):
         print('Getting Album names...')
@@ -66,7 +66,7 @@ class ScraperController:
     def open_discography_type(self):
         print('Open/Close music collection...')
         collection_dropdown = self.browser.find_element_by_xpath(
-            '//*[@id="main"]/div/div[2]/div[3]/main/div[2]/div[2]/div/div/div[2]/section/div[1]/button[1]')
+            '//*[@id="main"]/div/div[2]/div[3]/main/div[2]/div[2]/div/div/div[2]/section/div/div[1]/button[1]')
         collection_dropdown.click()
 
     def click_discography(self, num):

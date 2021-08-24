@@ -20,6 +20,3 @@ class WorkbookController:
         except:
             artist_id = re.search("artist/(\w+)", str(link)).group(1)
         return artist_id
-
-
-
