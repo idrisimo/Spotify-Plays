@@ -2,7 +2,7 @@
 # Spotify Streams Scraper - wip
 
 ## Description
-This script Scapes the Spotify to gather data on the number of times an artists song was played on Spotify and places that data into a spreadsheet. 
+This script scrapes the Spotify website to gather data on the number of times an artist's song was played on Spotify and places that data into a spreadsheet.
 
 ## Example
 Click on image below to see script in action:
