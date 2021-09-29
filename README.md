@@ -4,6 +4,8 @@
 ## Description
 This script Scapes chartmasters.org to gather data on the number of times an artists song was played on Spotify and places that data into a spreadsheet. 
 
+## Example
+
 [![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/c7x5y68JQpU/0.jpg)](http://www.youtube.com/watch?v=c7x5y68JQpU)
 
 ## Installation
