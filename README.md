@@ -2,7 +2,12 @@
 # Spotify Streams Scraper - wip
 
 ## Description
-This script Scapes chartmasters.org to gather data on the number of times an artists song was played on Spotify and places that data into a spreadsheet. 
+This script scrapes the Spotify website to gather data on the number of times an artist's song was played on Spotify and places that data into a spreadsheet.
+
+## Example
+Click on image below to see script in action:
+
+[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/c7x5y68JQpU/0.jpg)](http://www.youtube.com/watch?v=c7x5y68JQpU)
 
 ## Installation
 
@@ -28,7 +33,7 @@ The Script has 3 main pieces:
 
 1) The links are grabbed from the spreadsheet, and opens the spotify page for the artist.
 
-2) Goes through an artist's discography toload all the json queries into the chrome logs
+2) Goes through an artist's discography to load all the json queries into the chrome logs
 
 3) Once all queries are loaded, the data is collected, put into a dataframe, cleaned up, then copied into middle.csv.
 
